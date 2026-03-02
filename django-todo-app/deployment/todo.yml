@@ -4,22 +4,22 @@ metadata:
   name: todo-deployment
   namespace: app
   labels:
-    app: todo
+    app: todos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: todo
+      app: todos
   template:
     metadata:
       labels:
-        app: todo
+        app: todos
     spec:
       containers:
-      - name: todo
-        image: abhishekf5/ultimate-cicd:replaceImageTag
+      - name: todos
+        image: erhardikfreelancer/django-todoapp:1.0.0
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
 
 ---
 
@@ -30,10 +30,10 @@ metadata:
   namespace: app
 spec:
   selector:
-    app: todo
+    app: todos
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8000
+      targetPort: 8000
   type: ClusterIP
 
